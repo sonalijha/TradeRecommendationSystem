@@ -47,7 +47,7 @@ public class LoginController {
 		List<Stock> stockList = loginservice.getSavedStocks(username);
 		 return stockList;
 	}
-	
+	//hii
 	
 	
 	
