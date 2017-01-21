@@ -1,0 +1,17 @@
+<table class="table table-hover">
+  <tr >
+    <th><strong>Company </strong></th>
+    <th><strong>Price</strong></th>
+      <th><strong>Symbol</strong></th>
+       <th><strong>outstanding shares</strong></th> 
+       
+  </tr>
+  <tr ng-repeat="company in stocks">
+    <td>{{company.companyName}}</td>
+    <td>{{company.price}}</td>
+    <td>{{company.symbol}}</td>
+    <td>{{company.outstandingShares}}</td>
+      
+  </tr>
+
+</table>

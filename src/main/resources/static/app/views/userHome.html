@@ -1,0 +1,59 @@
+<!--<header>
+	
+		<h1>Welcome {{username}}<span class="color">.</span></h1>
+		<nav>
+			<ul align="center">
+				<li><a ui-sref="userHome.overview">Overview</a></li>
+				<li><a href="#">Portfolio</a></li>
+				<li><a href="#">Wishlist</a></li>
+				<li><a href="#/login">Logout</a></li>
+			</ul>
+		</nav>
+
+</header>-->
+ <div id="wrapper">
+
+        <!-- Sidebar -->
+        <div id="sidebar-wrapper">
+            <ul class="sidebar-nav">
+                <li class="sidebar-brand">
+                    
+                    <p style="color:white;"> Welcome {{username}}</p>
+                    
+                </li>
+                <li>
+                    <a ui-sref="userHome.dashboard">Dashboard</a>
+                </li>
+                <li>
+                    <a ui-sref="userHome.profile">Profile</a>
+                </li>
+                <li>
+                    <a ui-sref="userHome.portfolio">Portfolio</a>
+                </li>
+                <li>
+                    <a ui-sref="userHome.watchlist">Watchlist</a>
+                </li>
+                <li>
+                    <a href="#/login">Logout</a>
+                </li>
+                
+            </ul>
+        </div>
+        <!-- /#sidebar-wrapper -->
+
+        <!-- Page Content -->
+        <div id="page-content-wrapper">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-12">
+                        
+                        <div ui-view></div>
+                       
+                    
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /#page-content-wrapper -->
+
+    </div>
