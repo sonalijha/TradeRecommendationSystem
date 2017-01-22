@@ -80,32 +80,36 @@ public class LoginRepositoryJdbc implements LoginRepository {
 
 	@Override
 	public List<Stock> getStockData(List<String> tickers) {
-		/*return jdbc.query(que, 
+		String list="(";
+		int i;
+		for( i =0;i<tickers.size()-1;i++){
+			list=list+"'"+tickers.get(i)+"',";
+		}
+		list=list+"'"+tickers.get(i)+"'"+")";
+		System.out.println(list);
+		String query ="select * from Stocks where Symbol in "+list;
+		System.out.println(query);
+
+		return jdbc.query(query,
 				new RowMapper<Stock>(){
 
 					@Override
 					public Stock mapRow(ResultSet rs, int rowNum) throws SQLException {
 						Stock stock = new Stock();
-						stock.setSymbol(rs.getString(2));
-						stock.setCompanyName(rs.getString(3));
-						stock.setPrice(rs.getDouble(4));
-						stock.setOutstandingShares(rs.getInt(5));
-						stock.setMarketCapitalization(rs.getDouble(6));
-						stock.setMarketCapType(rs.getString(7));
+						stock.setSymbol(rs.getString(1));
+						stock.setCompanyName(rs.getString(2));
+						stock.setPrice(rs.getDouble(3));
+						stock.setOutstandingShares(rs.getInt(4));
+						stock.setMarketCapitalization(rs.getDouble(5));
+						stock.setMarketCapType(rs.getString(6));
 						return stock;
 					}
 			
-		});*/
-		List<Stock> stocks=new ArrayList<>();
-		stocks.add(new Stock("ACC", "A C C", 1000, 5000000, 20000000, "SMALL"));
-		stocks.add(new Stock("ONGC", "O N G C", 1000, 5000000, 90000000, "Large"));
-		
-		return stocks;
+		});
 	}
 
 	@Override
 	public void updateStockData(List<Stock> list) {
-		// TODO Auto-generated method stub
 		
 	}
 
@@ -113,23 +117,59 @@ public class LoginRepositoryJdbc implements LoginRepository {
 
 	@Override
 	public List<Stock> getSavedStockData(String username) {
-		List<Stock> stocks=new ArrayList<>();
-		stocks.add(new Stock("hhhh", "A C C", 1000, 5000000, 20000000, "SMALL"));
+		String query="select Stock_Symbol, Stock_Price, No_Of_Stocks from UserStocks where Username=\'"+username+"\'";
+		System.out.println("...................");
+		return jdbc.query(query,
+				new RowMapper<Stock>(){
+
+					@Override
+					public Stock mapRow(ResultSet rs, int rowNum) throws SQLException {
+						Stock stock = new Stock();
+						stock.setSymbol(rs.getString(1));
+						stock.setPrice(rs.getDouble(2));
+						stock.setOutstandingShares(rs.getInt(3));
+						return stock;
+					}
+			
+		});
+		/*stocks.add(new Stock("hhhh", "A C C", 1000, 5000000, 20000000, "SMALL"));
 		stocks.add(new Stock("yyy", "O N G C", 1000, 5000000, 90000000, "Large"));
+		*/
 		
-		
-		return stocks;
+		//return stocks;
+	}
+
+@Override
+public List<String> getStockSymbols(int from, long to){
+	List<String> symbolList=new ArrayList<>();
+	symbolList.add("ACC");
+	symbolList.add("BHEL");
+	symbolList.add("ONGC");
+	return symbolList;
+}
+
+	@Override
+	public boolean saveStocks(List<Stock> stockList,String username) {
+		int noOfRows=0;
+		for(int i=0;i<stockList.size();i++){
+			noOfRows=jdbc.update("insert into UserStocks values(?,?,?,?)",username,
+					stockList.get(i).getSymbol(),stockList.get(i).getPrice(),stockList.get(i).getOutstandingShares());
+		}
+		if(noOfRows==0)
+			return false;
+		else 
+			return true;
 	}
 
 
 
 	@Override
-	public boolean saveStocks(List<Stock> stockList) {
-		System.out.println("size ="+stockList.size());
-		if(stockList.isEmpty())
-			return false;
-		else 
-			return true;
+	public List<Stock> getStockHistoryData(String symbol) {
+		List<Stock> historyList=new ArrayList<>();
+		/*Stock stocks=new Stock();
+		stocks.add(new Stock("hhhh", "A C C", 1000, 5000000, 20000000, "SMALL",'01-aug-98',189.00,67.00,1));
+		stocks.add(new Stock("yyy", "O N G C", 1000, 5000000, 90000000, "Large","01-aug-98",189.00,67.00,1));*/
+		return null;
 	}
 
 }

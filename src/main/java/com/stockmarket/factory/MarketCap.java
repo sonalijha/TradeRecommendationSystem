@@ -4,8 +4,9 @@ import java.util.List;
 import com.stockmarket.customer.Customer;
 import com.stockmarket.stock.Stock;
 
-public interface MarketCap {
+public abstract class MarketCap {
 
-	public List<String> getTopStocks();
+	public abstract List<String> getTopStocks();
 
+	//function with logic
 }

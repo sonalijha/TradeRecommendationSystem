@@ -1,16 +1,49 @@
 package com.stockmarket.stock;
+
+import java.sql.Date;
+
 public class Stock {
+	
 	String symbol;
 	String companyName;
 	double price;
 	long outstandingShares;
 	double marketCapitalization;
 	String marketCapType;
+	Date date;
+	public Date getDate() {
+		return date;
+	}
+	public void setDate(Date date) {
+		this.date = date;
+	}
+	public double getHigh() {
+		return high;
+	}
+	public void setHigh(double high) {
+		this.high = high;
+	}
+	public double getLow() {
+		return low;
+	}
+	public void setLow(double low) {
+		this.low = low;
+	}
+	public double getRank() {
+		return rank;
+	}
+	public void setRank(double rank) {
+		this.rank = rank;
+	}
+	double high;
+	double low;
+	double rank;
 	public Stock() {
 		// TODO Auto-generated constructor stub
 	}
+	
 	public Stock(String symbol, String companyName, double price, long outstandingShares, double marketCapitalization,
-			String marketCapType) {
+			String marketCapType, Date date, double high, double low, double rank) {
 		super();
 		this.symbol = symbol;
 		this.companyName = companyName;
@@ -18,6 +51,10 @@ public class Stock {
 		this.outstandingShares = outstandingShares;
 		this.marketCapitalization = marketCapitalization;
 		this.marketCapType = marketCapType;
+		this.date = date;
+		this.high = high;
+		this.low = low;
+		this.rank = rank;
 	}
 	public String getSymbol() {
 		return symbol;

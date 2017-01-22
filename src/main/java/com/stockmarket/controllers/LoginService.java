@@ -84,8 +84,8 @@ private LoginRepository loginRepo;
 
 
 
-	public boolean saveStocks(List<Stock> stockList) {
-		boolean result=loginRepo.saveStocks(stockList);
+	public boolean saveStocks(List<Stock> stockList,String username) {
+		boolean result=loginRepo.saveStocks(stockList,username);
 		
 		return result;
 	}

@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.stockmarket.*;
 import com.stockmarket.customer.Customer;
 import com.stockmarket.login.Login;
+import com.stockmarket.models.UserStocks;
 import com.stockmarket.stock.Stock;
 
 @RestController
@@ -30,7 +31,7 @@ public class LoginController {
 		 return loginservice.isValidUser(login);
 	}
 	
-	@RequestMapping(value="dashboard",method=RequestMethod.GET)
+	@RequestMapping(value="profile",method=RequestMethod.GET)
 	public Customer getCustomerDetails(@RequestParam String username){
 		Customer customer = loginservice.getCustomerDataFromRepo(username);
 		 return customer;
@@ -47,14 +48,13 @@ public class LoginController {
 		List<Stock> stockList = loginservice.getSavedStocks(username);
 		 return stockList;
 	}
-	//hii
 	
 	
 	
 	@RequestMapping(value="savestocks",method=RequestMethod.POST)
-	public  boolean saveStocks(@RequestBody ArrayList<Stock> stockList){
-		System.out.println("size ="+stockList.size());
-		return loginservice.saveStocks(stockList);
+	public  boolean saveStocks(@RequestBody UserStocks userStocks){
+		System.out.println("size ="+userStocks.getStockList().size());
+		return loginservice.saveStocks(userStocks.getStockList(),userStocks.getUsername());
 	}
 	
 	/*@RequestMapping(value="getLiveData",method=RequestMethod.GET)

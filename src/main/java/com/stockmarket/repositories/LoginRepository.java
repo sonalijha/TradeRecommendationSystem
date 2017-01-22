@@ -16,6 +16,10 @@ public interface LoginRepository {
 
 	List<Stock> getSavedStockData(String username);
 
-	boolean saveStocks(List<Stock> stockList);
+	boolean saveStocks(List<Stock> stockList,String username);
 
+	public List<String> getStockSymbols(int from, long to);
+
+	List<Stock> getStockHistoryData(String symbol);
+	
 }
