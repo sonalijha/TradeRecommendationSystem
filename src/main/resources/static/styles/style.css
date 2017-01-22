@@ -7,7 +7,11 @@
 }
 body {
   font-family: 'Source Sans Pro', sans-serif;
-  
+  background: white  ;
+ /*-webkit-background-size: cover;
+ -moz-background-size: cover;
+ -o-background-size: cover;
+ background-size: cover;*/
   font-weight: 300;
     
 }

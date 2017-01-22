@@ -18,7 +18,7 @@
         .state('userHome', {
    url: '/userHome/:username',   
     templateUrl: 'app/views/userHome.html',
-   controller: 'UserHomeController',no
+   controller: 'UserHomeController',
    resolve:{
       username: ['$stateParams', function($stateParams){
           return $stateParams.username;
@@ -28,25 +28,21 @@
                .state('userHome.dashboard', {
             url: '/dashboard', 
             templateUrl: 'app/views/dashboard.html',
-            controller: 'DashboardController',
-            resolve:{
-                marketCap: ['$stateParams', function($stateParams){
-                    return $stateParams.marketCap;
-                }]
-             }
+            controller: 'DashboardController'
   
 })
-          .state('userHome.dashboard.marketCap', {
-            url: '/market/:marketCap', 
+        .state('userHome.dashboard.marketCap', {
+            url: '/marketCap/:marketCap', 
             templateUrl: 'app/views/marketCap.html',
             controller: 'MarketCapController',
-            resolve:{
-                marketCap: ['$stateParams', function($stateParams){
-                    return $stateParams.marketCap;
-                }]
-             }
+             resolve:{
+      marketCap: ['$stateParams', function($stateParams){
+          return $stateParams.marketCap;
+      }]
+   }
   
 })
+       
             
             .state('userHome.profile', {
    url: '/profile', 
