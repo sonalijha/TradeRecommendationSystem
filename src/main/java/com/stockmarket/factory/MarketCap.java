@@ -1,12 +1,10 @@
 package com.stockmarket.factory;
 import java.util.List;
 
-import com.stockmarket.customer.Customer;
-import com.stockmarket.stock.Stock;
+import com.stockmarket.models.Stock;
 
-public abstract class MarketCap {
+public interface MarketCap {
 
-	public abstract List<String> getTopStocks();
-
-	//function with logic
+	public List<Stock> getTopStocks(List<String> stockSymbols,List<Stock> StockHistory);
+	public double getTopFive(String symbol,List<Stock> StockHistoryData);
 }

@@ -2,8 +2,6 @@ package com.stockmarket.models;
 
 import java.util.List;
 
-import com.stockmarket.stock.Stock;
-
 public class UserStocks {
 	String username;
 	List<Stock> stockList;
