@@ -18,7 +18,7 @@
         .state('userHome', {
    url: '/userHome/:username',   
     templateUrl: 'app/views/userHome.html',
-   controller: 'UserHomeController',no
+   controller: 'UserHomeController',
    resolve:{
       username: ['$stateParams', function($stateParams){
           return $stateParams.username;
@@ -28,25 +28,21 @@
                .state('userHome.dashboard', {
             url: '/dashboard', 
             templateUrl: 'app/views/dashboard.html',
-            controller: 'DashboardController',
-            resolve:{
-                marketCap: ['$stateParams', function($stateParams){
-                    return $stateParams.marketCap;
-                }]
-             }
+            controller: 'DashboardController'
   
 })
-          .state('userHome.dashboard.marketCap', {
-            url: '/market/:marketCap', 
+        .state('userHome.dashboard.marketCap', {
+            url: '/marketCap/:marketCap', 
             templateUrl: 'app/views/marketCap.html',
             controller: 'MarketCapController',
-            resolve:{
-                marketCap: ['$stateParams', function($stateParams){
-                    return $stateParams.marketCap;
-                }]
-             }
+             resolve:{
+      marketCap: ['$stateParams', function($stateParams){
+          return $stateParams.marketCap;
+      }]
+   }
   
 })
+       
             
             .state('userHome.profile', {
    url: '/profile', 
@@ -67,40 +63,31 @@
   
 });
         
-        //$urlRouterProvider.otherwise('/login');
-       /*$routeProvider
-            .when('/login', {
-                controller: 'LoginController',
-                templateUrl: 'app/views/login.html'
-            })
-            .when('/userHome/:username/', {
-                controller: 'UserHomeController',
-                templateUrl: 'app/views/userHome.html'
-            })
-       .when('/overview',{
-               controller: 'OverviewController',
-               templateUrl: 'app/views/overview.html'
-           
-    
-       })
-            .otherwise( { redirectTo: '/login' } );*/
-    /*$stateProvider
-        .state('login', {
-          url: '/login',
-          templateUrl: 'app/views/login.html',
-          controller: 'LoginController'
-        })
-        .state('userHome', {
-          url: '/userHome/:username',
-          templateUrl: 'app/views/userHome.html',
-          controller: 'UserHomeController'
-        })
-          .state('userHome.overview', {
-            url: '/overview',
-            templateUrl: 'app/views/overview.html',
-            //controller: 'overviewController'
-          });*/
+        
+    })
+   /* .factory('ClockSrv', function($interval){
+  var clock = null;
+  var service = {
+    startClock: function(fn){
+      if(clock === null){
+        clock = $interval(fn, 60000);
+      }
+    },
+    stopClock: function(){
+      if(clock !== null){
+        $interval.cancel(clock);
+        clock = null;
+      }
+    }
+  };
 
-    });
+  return service;
+})
+    .run(function($http,ClockSrv){
+  ClockSrv.startClock(function(){
+$http.get('http://192.168.0.106:7057/updatehistoricaldata');
+  });
+})*/
+    ;
 }());
  

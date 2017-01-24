@@ -1,4 +1,4 @@
-package com.stockmarket.controllers;
+/*package com.stockmarket.controllers;
 
 import com.stockmarket.application.*;
 import com.stockmarket.models.Login;
@@ -97,5 +97,5 @@ public class SServiceTest {
 }
 
 
-
+*/
 

@@ -13,10 +13,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.stockmarket.models.Customer;
+import com.stockmarket.models.Login;
+
+/*import com.stockmarket.models.Customer;
 import com.stockmarket.models.Login;
 import com.stockmarket.models.Stock;
-import com.stockmarket.models.UserStocks;
+import com.stockmarket.models.UserStocks;*/
 
 @RestController
 @RequestMapping("/")
@@ -66,11 +68,12 @@ public class Controller {
 		return service.saveStocks(userStocks.getStockList().get(0),userStocks.getUsername());
 	}
 	
-	/*@RequestMapping(value="getLiveData",method=RequestMethod.GET)
-	public  void getLiveData() throws IOException, JSONException {
-		loginservice.getApiData();
+	//This controller updates the Stock table and feeds the current data
+	@RequestMapping(value="getLiveData",method=RequestMethod.GET)
+	public  void getStockLiveData() throws IOException, JSONException {
+		service.getApiData();
 	}
-	*/
+	
 	
 	//This controller updates the Historical data of Stocks
 	@RequestMapping(value="updatehistoricaldata",method=RequestMethod.GET)

@@ -14,8 +14,9 @@ import com.stockmarket.models.Login;
 import com.stockmarket.models.Stock;
 //import com.stockmarket.stock.Stock;
 import com.stockmarket.repositories.SRepository;
-import com.stockmarket.stock.StockData;
+import com.stockmarket.stock.ApiStockData;
 import com.stockmarket.factory.*;
+import com.stockmarket.stock.*;
 
 @Service
 public class SService {
@@ -57,7 +58,6 @@ private SRepository loginRepo;
 		System.out.println("Test"+symbolList.size());
 		List<Stock> topStocks=marketCap.getTopStocks(symbolList,completeHistory);
 		listOfStocks=loginRepo.getStockData(topStocks);
-		System.out.println("PREV"+topStocks.size());
 		
 		for(int i=0;i<listOfStocks.size();i++)
 		{
@@ -72,7 +72,8 @@ private SRepository loginRepo;
 	}
 	public void getApiData() throws IOException{
 		List<Stock> list=new ArrayList<Stock>();
-		//list=stockData.fetchStockData();
+		ApiStockData stockData=new ApiStockData();
+		 list=stockData.fetchStockData();
 		loginRepo.updateStockData(list);
 	}
 
@@ -96,8 +97,8 @@ private SRepository loginRepo;
 
 
 	public void getHistoricData() throws IOException, JSONException,ParseException {
-		StockData stockData=new StockData();
-		List<Stock> stockList=new ArrayList<>();
+		ApiStockData stockData=new ApiStockData();
+		List<Stock> stockList=new ArrayList();
 		stockList=stockData.fetchHistorialData();
 		loginRepo.feedHistoricalData(stockList);
 		

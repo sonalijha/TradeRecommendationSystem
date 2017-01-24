@@ -1,5 +1,5 @@
 (function() {
-var LoginController = function($scope,$location,$log,$http,appService){
+var LoginController = function($scope,$location,$log,$window,$http,appService){
 	/*$scope.sortBy='name';
 	$scope.reverse= false;
 	
@@ -9,6 +9,8 @@ var LoginController = function($scope,$location,$log,$http,appService){
 		$scope.sortBy=propName;
 		$scope.reverse= !$scope.reverse;
 	};*/
+     
+    
 	$scope.login = function() {
     //$rootScope.loggedInUser = $scope.username;
 		var status;
@@ -17,18 +19,17 @@ var LoginController = function($scope,$location,$log,$http,appService){
 		$log.log('Logged in: '+ status);
 		if(status == 1){
 			$log.log('TRUE');
-			 //$location.path('/userHome/'+':' + $scope.username);
-            $location.path('/userHome/' +$scope.username);
-			}else{
-				$log.log('FALSE');	
-				//$location.path('/userHome/'+$scope.username);
-				$location.path("/login");
-				 //$location.path('/userHome/'+':' + $scope.username);
+			 $location.path('/userHome/'  + $scope.username);
+			}
+        else{
+               $log.log('FALSE');
+                $location.path("/login");
+                $scope.result = "Invalid Credentials";
 			}
 		}, function(data, status, headers, config) {
             $log.log(data.error + ' ' + status);
         });
-        /*var status;
+       /* var status;
 		status= appService.authenticateUser($scope.username, $scope.password);
 		$log.log('Logged in: '+ status);
 		if(status === 'true'){
@@ -41,6 +42,6 @@ var LoginController = function($scope,$location,$log,$http,appService){
   };
 };
 
-LoginController.$inject=['$scope','$location','$log','$http','appService'];	angular.module('myApp').controller('LoginController',LoginController);
+LoginController.$inject=['$scope','$location','$log','$window','$http','appService'];	angular.module('myApp').controller('LoginController',LoginController);
 
 }());

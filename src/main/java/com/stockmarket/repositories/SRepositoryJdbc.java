@@ -1,8 +1,13 @@
 package com.stockmarket.repositories;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 //import java.text.SimpleDateFormat;
 //import java.util.ArrayList;
 import java.util.List;
@@ -116,7 +121,8 @@ public class SRepositoryJdbc implements SRepository {
 						stock.setSymbol(rs.getString(2));
 						stock.setPrice(rs.getDouble(3));
 						stock.setOutstandingShares(rs.getInt(4));
-						//stock.setDate(toString(rs.getDate(4));
+						//Date d = new Date((rs.getDate(4)).getTime());
+						//stock.setDate((d.toString()));
 						return stock;
 					}
 			
@@ -170,8 +176,6 @@ public class SRepositoryJdbc implements SRepository {
 		{
 			
 			String query="select * from Historical_Data where Symbol=\'"+symbol+"\'";
-			//System.out.println("inside get stock history data");
-			//System.out.println(query);
 			return jdbc.query(query,
 					new RowMapper<Stock>(){
 
@@ -194,9 +198,23 @@ public class SRepositoryJdbc implements SRepository {
 	@Override
 	public void feedHistoricalData(List<Stock> stockList) {
 		System.out.println("In the repo");
-		for(int i=0;i<stockList.size();i++){
-        jdbc.update("insert into Historical_Data values(?,?,?,?)",stockList.get(i).getSymbol(),stockList.get(i).getDate(),stockList.get(i).getHigh(),stockList.get(i).getLow());
-	}	
+		for (int i=0;i<stockList.size();i++){
+			jdbc.update("insert into Historical_Data values(?,?,?,?)",stockList.get(i).getSymbol(),stockList.get(i).getDate(),stockList.get(i).getHigh(),stockList.get(i).getLow());
+		}
+		System.out.println("End");
+        /*Calendar calendar = Calendar.getInstance();
+        calendar.add(Calendar.DATE, -15);
+        Date fromDate = calendar.getTime(); 
+        System.out.println(fromDate);
+        DateFormat extractYear = new SimpleDateFormat("yyyy");
+        DateFormat extractMonth = new SimpleDateFormat("MMM");
+        DateFormat extractDay = new SimpleDateFormat("dd");
+        DateFormat dateSqlFormat=new SimpleDateFormat("dd-MMM-yy");
+        DateFormat dateDefaultFormat=new SimpleDateFormat("dd-MMM-yy");
+        String fromDateDay = extractDay.format(fromDate);
+        String fromDateMonth= extractMonth.format(fromDate);
+        String fromDateYear= extractYear.format(fromDate);*/
+        //String date=fromDate.
 	}	
 	}
 

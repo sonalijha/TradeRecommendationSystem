@@ -1,0 +1,60 @@
+ .marque-container ul li
+       {
+           float: left;
+           list-style-type: none;
+           margin:0;
+           margin-left: 10px;
+           font-weight:bold;
+       }
+     .marque-container ul li::after
+       {
+           content:"|";
+           margin-left: 10px;
+       }
+    .marque-container 
+       {
+           width: 3800px;
+           overflow-x: hidden;
+       }
+    .panel-marque
+       {
+           overflow-x: hidden;
+           width: 98%;
+           
+       }
+    .marque-container ul li span.price
+       {
+           margin-left:5px;
+           font-weight:bold;
+           
+       }
+       .marque-container ul li span.percentchange
+       {
+           margin-left:5px;
+           font-weight:bold;
+           color:green;
+           
+       }
+         .marque-container ul li span.percentchange.negative
+       {
+           margin-left:5px;
+           font-weight:bold;
+           color:red;
+           
+       }
+       .marque-container ul {
+           margin-left: 0;
+           animation-name:slider;
+           animation-duration: 90s;
+           animation-iteration-count: infinite;
+           animation-timing-function: linear;
+       }
+       @keyframes slider {
+           from {
+               margin-left:0;
+               
+           }
+           to {
+               margin-left: -3800px;
+           }
+       }

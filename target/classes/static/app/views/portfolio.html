@@ -1,1 +1,53 @@
-<h1>These are the saved Stocks<h1>
+  <div class="panel panel-default">
+  <!-- Default panel contents -->
+    <div class="panel-heading"><h2>My Portfolio</h2></div>
+  <div class="panel-body"></div>
+  <div style="padding:1px"></div>
+  <table class="table table-hover">
+
+<div class="portfolio_table" >     
+<tr>
+    <th><strong>Symbol </strong></th>
+    <th><strong>Price</strong></th>
+    <th><strong>Quantity</strong></th>
+    <th>Date-Time</th>
+ </tr>
+  <tr ng-repeat="i in portfolio">
+    <td>{{i.symbol}}</td>
+   <!-- <td>{{i.companyName}}</td> -->
+    <td>{{i.price}}</td>
+    <td>{{i.outstandingShares}}</td>
+      <td>{{i.date}}</td>
+  </tr>
+</div>
+</table>
+      
+<style>
+      
+    .portfolio_table tr
+    {
+       font-family: sans-serif;
+        font-size: 50;
+    }
+      
+      
+      
+      
+      
+</style>
+
+
+
+
+
+
+
+
+
+
+
+  
+ 
+
+
+
